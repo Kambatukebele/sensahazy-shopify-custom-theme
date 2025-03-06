@@ -1,0 +1,100 @@
+<section
+  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px"
+  class="w-full h-fit page-width"
+>
+  <div class="relative flex flex-col items-center gap-6 lg:justify-center lg:items-center">
+    <h1 class="imageH1Text text-center lg:w-[900px] lg:text-center">
+      {{ section.settings.heading_text }}
+    </h1>
+    <p class="text-base text-center">
+      {{ section.settings.paragraph_text }}
+    </p>
+    <button class="px-6 py-3 bg-black border text-white rounded-lg">
+      <a href="{{ section.settings.button_url }}">
+        {{ section.settings.button_text }}
+      </a>
+    </button>
+  </div>
+</section>
+
+<style>
+  .imageH1Text {
+    font-size: 36px;
+  }
+  @media screen and (min-width: 640px) {
+    .imageH1Text {
+      font-size: 48px;
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    .imageH1Text {
+      font-size: 68px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "HeadingBodyButton",
+  "class": "headingBodyButton",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Paddings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Texts"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading text",
+      "default": "Write something amazing"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "paragraph_text",
+      "label": "Description",
+      "default": "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop now",
+      "placeholder": "Enter your text here"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button url"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heading body button"
+    }
+  ]
+}
+{% endschema %}

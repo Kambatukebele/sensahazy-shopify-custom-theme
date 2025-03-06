@@ -1,0 +1,282 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "single_product_DprbYJ": {
+      "type": "single-product",
+      "settings": {
+        "featured_product": "cool-spray",
+        "title": "Your freshest breath ever in a single shot",
+        "description": "The ultimate solution on-the-go, recommended by dental hygienists, combines 2 of the most effective treatments for bad breath to give you the freshest month ever, in a ready-to-use pocket size.",
+        "button": "Shop Now",
+        "paddingY": "lg:py-16",
+        "background_color": "#ffffff",
+        "text_color": "#222222",
+        "title_transform": "capitalize",
+        "description_color": "#333333",
+        "description_transform": "capitalize",
+        "button_color": "#023375",
+        "button_text_color": "#ffffff",
+        "button_hover_color": "#ffd300",
+        "button_hover_text_color": "#222222",
+        "border_radius": 8,
+        "button_transform": "uppercase"
+      }
+    },
+    "benefits_4ybMHR": {
+      "type": "benefits",
+      "blocks": {
+        "card_settings_LzN8zN": {
+          "type": "card_settings",
+          "settings": {
+            "title": "Efficace",
+            "description": "Strictement évalué, testé, et approuvé par nos clients",
+            "background_color": "rgba(0,0,0,0)",
+            "title_color": "#333333",
+            "description_color": "#222222",
+            "title_transform": "uppercase",
+            "border_radius_card": 18,
+            "card_shadow": "shadow-sm"
+          }
+        },
+        "card_settings_QXaPd7": {
+          "type": "card_settings",
+          "settings": {
+            "title": "Efficace",
+            "description": "Strictement évalué, testé, et approuvé par nos clients",
+            "background_color": "rgba(0,0,0,0)",
+            "title_color": "#333333",
+            "description_color": "#333333",
+            "title_transform": "uppercase",
+            "border_radius_card": 18,
+            "card_shadow": "shadow-sm"
+          }
+        },
+        "card_settings_7t9KjT": {
+          "type": "card_settings",
+          "settings": {
+            "title": "Efficace",
+            "description": "Strictement évalué, testé, et approuvé par nos clients",
+            "background_color": "rgba(0,0,0,0)",
+            "title_color": "#333333",
+            "description_color": "#333333",
+            "title_transform": "uppercase",
+            "border_radius_card": 18,
+            "card_shadow": "shadow-sm"
+          }
+        },
+        "card_settings_Tmb9nQ": {
+          "type": "card_settings",
+          "settings": {
+            "title": "Efficace",
+            "description": "Strictement évalué, testé, et approuvé par nos clients",
+            "background_color": "rgba(0,0,0,0)",
+            "title_color": "#333333",
+            "description_color": "#333333",
+            "title_transform": "uppercase",
+            "border_radius_card": 18,
+            "card_shadow": "shadow-sm"
+          }
+        }
+      },
+      "block_order": [
+        "card_settings_LzN8zN",
+        "card_settings_QXaPd7",
+        "card_settings_7t9KjT",
+        "card_settings_Tmb9nQ"
+      ],
+      "settings": {
+        "title": "Des soins corporels performants et naturels sans déchets",
+        "paddingY": "lg:py-16",
+        "background_color": "#ffffff",
+        "text_color": "#222222",
+        "title_transform": "capitalize"
+      }
+    },
+    "video_xgjep4": {
+      "type": "video",
+      "blocks": {
+        "video_card_azqkeL": {
+          "type": "video_card",
+          "settings": {
+            "title": "1. Choisissez votre Spray 🎨",
+            "description": "Notre spray a été conçu pour être réutilisé pendant 2 ans. Grâce à un design raffiné et durable, il ne vous reste plus qu'à choisir la couleur qui vous convient.",
+            "video_heading_title_color": "#000000",
+            "video_description_color": "#000000"
+          }
+        },
+        "video_card_UMjgKX": {
+          "type": "video_card",
+          "settings": {
+            "title": "2. Choisissez votre parfum 🍭",
+            "description": "Choisissez votre parfum SensaHazy préféré et nous nous occupons du reste",
+            "video_heading_title_color": "#000000",
+            "video_description_color": "#000000"
+          }
+        },
+        "video_card_7TBXA7": {
+          "type": "video_card",
+          "settings": {
+            "title": "3. S'abonner ou achat unique 📦",
+            "description": "Abonnez-vous pour bénéficier d'une réduction ou choisissez l'achat unique. Nous vous enverrons vos recharges exactement quand vous le souhaitez",
+            "video_heading_title_color": "#000000",
+            "video_description_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "video_card_azqkeL",
+        "video_card_UMjgKX",
+        "video_card_7TBXA7"
+      ],
+      "settings": {
+        "video": "shopify://files/videos/video.mp4",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_paddingY": "lg:py-20",
+        "button_video_text": "Choisissez le votre",
+        "button_video_bg_color": "#ffd300",
+        "button_video_text_color": "#222222",
+        "button_video_radius": 8
+      }
+    },
+    "image_with_text_alt_d8JGrc": {
+      "type": "image-with-text-alt",
+      "settings": {
+        "image": "shopify://shop_images/8.1.jpg",
+        "title": "Your freshest breath ever in a imgText shot",
+        "description": "The ultimate solution on-the-go, recommended by dental hygienists, combines 2 of the most effective treatments for bad breath to give you the freshest month ever, in a ready-to-use pocket size.",
+        "button": "Shop Now",
+        "paddingY": "lg:py-20",
+        "background_color": "#ffffff",
+        "text_color": "#222222",
+        "title_transform": "capitalize",
+        "description_color": "#333333",
+        "description_transform": "capitalize",
+        "button_color": "#023375",
+        "button_text_color": "#ffffff",
+        "button_hover_color": "#ffd300",
+        "button_hover_text_color": "#000000",
+        "border_radius": 8,
+        "button_transform": "uppercase"
+      }
+    },
+    "testimonial_photo_JeaaHX": {
+      "type": "testimonial-photo",
+      "blocks": {
+        "testimonial_RE6Yhr": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/2.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#222222"
+          }
+        },
+        "testimonial_WA6kpT": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/7.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333333"
+          }
+        },
+        "testimonial_eFMk9r": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/5.1.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333333"
+          }
+        },
+        "testimonial_DJwPbj": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/3.1.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333333"
+          }
+        },
+        "testimonial_8Fxp6J": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/9.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333333"
+          }
+        },
+        "testimonial_aJyTrR": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/6.2.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333333"
+          }
+        },
+        "testimonial_bYLdpK": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/10.1.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333333"
+          }
+        },
+        "testimonial_f3YWH7": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/8.1.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333333"
+          }
+        },
+        "testimonial_WMeBiL": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/1.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333333"
+          }
+        },
+        "testimonial_f3zjYg": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/4.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333333"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_RE6Yhr",
+        "testimonial_WA6kpT",
+        "testimonial_eFMk9r",
+        "testimonial_DJwPbj",
+        "testimonial_8Fxp6J",
+        "testimonial_aJyTrR",
+        "testimonial_bYLdpK",
+        "testimonial_f3YWH7",
+        "testimonial_WMeBiL",
+        "testimonial_f3zjYg"
+      ],
+      "settings": {
+        "title": "What Our Customers Say",
+        "title_transform": "capitalize",
+        "background_color": "rgba(0,0,0,0)",
+        "color_title": "#222222",
+        "paddingY": "lg:py-16"
+      }
+    }
+  },
+  "order": [
+    "single_product_DprbYJ",
+    "benefits_4ybMHR",
+    "video_xgjep4",
+    "image_with_text_alt_d8JGrc",
+    "testimonial_photo_JeaaHX"
+  ]
+}

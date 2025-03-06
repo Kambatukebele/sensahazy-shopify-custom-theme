@@ -1,0 +1,308 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "display_product_tytfxF": {
+      "type": "display-product",
+      "settings": {
+        "bg_color": "#3dc6fd",
+        "product_title_color": "#000000",
+        "product_description_color": "#000000",
+        "product_title_text_transform": "normal-case"
+      }
+    },
+    "benefits_GQXwjE": {
+      "type": "benefits",
+      "blocks": {
+        "card_settings_V3LdRz": {
+          "type": "card_settings",
+          "settings": {
+            "title": "Efficace",
+            "description": "Strictement évalué, testé, et approuvé par nos clients",
+            "background_color": "#f9f9f9",
+            "title_color": "#333",
+            "description_color": "#333",
+            "title_transform": "uppercase",
+            "border_radius_card": 0,
+            "card_shadow": "shadow-lg"
+          }
+        },
+        "card_settings_K7Jnqy": {
+          "type": "card_settings",
+          "settings": {
+            "title": "Efficace",
+            "description": "Strictement évalué, testé, et approuvé par nos clients",
+            "background_color": "#f9f9f9",
+            "title_color": "#333",
+            "description_color": "#333",
+            "title_transform": "uppercase",
+            "border_radius_card": 0,
+            "card_shadow": "shadow-lg"
+          }
+        },
+        "card_settings_MADEP8": {
+          "type": "card_settings",
+          "settings": {
+            "title": "Efficace",
+            "description": "Strictement évalué, testé, et approuvé par nos clients",
+            "background_color": "#f9f9f9",
+            "title_color": "#333",
+            "description_color": "#333",
+            "title_transform": "uppercase",
+            "border_radius_card": 0,
+            "card_shadow": "shadow-lg"
+          }
+        },
+        "card_settings_MfHzXQ": {
+          "type": "card_settings",
+          "settings": {
+            "title": "Efficace",
+            "description": "Strictement évalué, testé, et approuvé par nos clients",
+            "background_color": "#f9f9f9",
+            "title_color": "#333",
+            "description_color": "#333",
+            "title_transform": "uppercase",
+            "border_radius_card": 0,
+            "card_shadow": "shadow-lg"
+          }
+        }
+      },
+      "block_order": [
+        "card_settings_V3LdRz",
+        "card_settings_K7Jnqy",
+        "card_settings_MADEP8",
+        "card_settings_MfHzXQ"
+      ],
+      "settings": {
+        "title": "",
+        "paddingY": "lg:py-20",
+        "background_color": "#f9f9f9",
+        "text_color": "#333",
+        "title_transform": "uppercase"
+      }
+    },
+    "image_with_text_alt_DawA8Q": {
+      "type": "image-with-text-alt",
+      "settings": {
+        "image": "shopify://shop_images/3.1.jpg",
+        "title": "Your freshest breath ever in a imgText shot",
+        "description": "In partnership with mental health charity Mind, we’ve created three unique scents – infused with essential oils – to inspire tranquillity, renewal and positivity.\n\n🪻Calm - contains notes of geranium and lavender to promote relaxation and calm.\n🍋Renew - made with essential oils of ginger and lemon, known to help promote balance.\n🍊Energise - crafted with orange and lemon essences, which are known to be invigorating.\n\n\nThe aim of our partnership is to promote self care and to highlight the importance of mental wellbeing.",
+        "button": "Read more",
+        "paddingY": "lg:py-20",
+        "background_color": "#f9f9f9",
+        "text_color": "#333",
+        "title_transform": "uppercase",
+        "description_color": "#333",
+        "description_transform": "capitalize",
+        "button_color": "#333",
+        "button_text_color": "#fff",
+        "button_hover_color": "#000",
+        "button_hover_text_color": "#fff",
+        "border_radius": 0,
+        "button_transform": "uppercase"
+      }
+    },
+    "testimonial_photo_89p8UX": {
+      "type": "testimonial-photo",
+      "blocks": {
+        "testimonial_MN9i66": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/2.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333"
+          }
+        },
+        "testimonial_mJrdQK": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/7.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333"
+          }
+        },
+        "testimonial_Eq4tGP": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/5.1.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333"
+          }
+        },
+        "testimonial_xVRVrt": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/3.1.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333"
+          }
+        },
+        "testimonial_MyDwtY": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/4.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333"
+          }
+        },
+        "testimonial_dX8djt": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/1.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333"
+          }
+        },
+        "testimonial_g6BqrW": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/8.1.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333"
+          }
+        },
+        "testimonial_X4KmeE": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/10.1.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333"
+          }
+        },
+        "testimonial_BBNUPJ": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/5.1.jpg",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_MN9i66",
+        "testimonial_mJrdQK",
+        "testimonial_Eq4tGP",
+        "testimonial_xVRVrt",
+        "testimonial_MyDwtY",
+        "testimonial_dX8djt",
+        "testimonial_g6BqrW",
+        "testimonial_X4KmeE",
+        "testimonial_BBNUPJ"
+      ],
+      "settings": {
+        "title": "What Our Customers Say",
+        "title_transform": "uppercase",
+        "background_color": "#f9f9f9",
+        "color_title": "#333",
+        "paddingY": "lg:py-8"
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description",
+        "share"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "display_product_tytfxF",
+    "benefits_GQXwjE",
+    "image_with_text_alt_DawA8Q",
+    "testimonial_photo_89p8UX",
+    "main",
+    "related-products"
+  ]
+}

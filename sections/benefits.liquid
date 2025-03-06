@@ -1,0 +1,264 @@
+<section
+  class="benefitsBackground w-full h-fit py-8 {{ section.settings.paddingY }}"
+>
+  <div class="max-w-6xl mx-auto px-4 lg:w-[900px] xl:w-[1136px] lg:mx-auto">
+    <!-- Heading -->
+    <h2 class="benefitsHeading text-3xl lg:text-4xl {{ section.settings.title_transform }} text-center mb-10 w-full sm:w-lg sm:mx-auto lg:w-[680px]">
+      {{ section.settings.title }}
+    </h2>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {% if section.blocks %}
+        {%- for card in section.blocks -%}
+          {%- case card.type -%}
+            {%- when 'card_settings' -%}
+              <div
+                style="background-color: {{ card.settings.background_color }}; border-radius: {{ card.settings.border_radius_card }}px"
+                class="p-4 {{ card.settings.card_shadow }}"
+              >
+                <div class="text-xl mb-2">⚡</div>
+                <span
+                  style="color: {{ card.settings.title_color }}"
+                  class="benefitsSubHeading {{ card.settings.title_transform }} text-lg lg:text-xl"
+                >
+                  {{ card.settings.title }}
+                </span>
+                <p style="color: {{ card.settings.description_color }}" class="benefitsDescription mt-1 text-base">
+                  {{ card.settings.description }}
+                </p>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% style %}
+  .benefitsBackground{
+    background-color: {{ section.settings.background_color }};
+  }
+  .benefitsHeading{
+    color: {{ section.settings.text_color }};
+  }
+  .benefitsHeading, .benefitsSubHeading{
+    font-family: {{ settings.type_header_font.family }};
+    font-weight: {{ settings.type_header_font.weight }};
+  }
+  .benefitsDescription{
+    font-family: {{ settings.type_body_font.family }};
+    font-weight: {{ settings.type_body_font.weight }};
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Benefits",
+  "class": "benefits",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Benefits"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Des soins corporels performants et naturels sans déchets"
+    },
+    {
+      "type": "header",
+      "content": "Styles"
+    },
+    {
+      "type": "select",
+      "id": "paddingY",
+      "label": "Padding Top & Bottom for the section",
+      "options": [
+        {
+          "value": "lg:py-4",
+          "label": "16"
+        },
+        {
+          "value": "lg:py-8",
+          "label": "32"
+        },
+        {
+          "value": "lg:py-12",
+          "label": "48"
+        },
+        {
+          "value": "lg:py-16",
+          "label": "64"
+        },
+        {
+          "value": "lg:py-20",
+          "label": "80"
+        }
+      ],
+      "default": "lg:py-8",
+      "info": "Select the padding for the section"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333"
+    },
+    {
+      "type": "select",
+      "id": "title_transform",
+      "label": "Title Transform",
+      "options": [
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        }
+      ],
+      "default": "uppercase",
+      "info": "Select the text transform for the title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card_settings",
+      "name": "Card benefits",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Card benefits"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Efficace"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "Strictement évalué, testé, et approuvé par nos clients"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color",
+          "default": "#f9f9f9"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Text Color",
+          "default": "#333"
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description Color",
+          "default": "#333"
+        },
+        {
+          "type": "select",
+          "id": "title_transform",
+          "label": "Title Transform",
+          "options": [
+            {
+              "value": "uppercase",
+              "label": "Uppercase"
+            },
+            {
+              "value": "capitalize",
+              "label": "Capitalize"
+            },
+            {
+              "value": "lowercase",
+              "label": "Lowercase"
+            }
+          ],
+          "default": "uppercase",
+          "info": "Select the text transform for the title"
+        },
+        {
+          "type": "range",
+          "id": "border_radius_card",
+          "label": "Border Radius card",
+          "min": 0,
+          "max": 50,
+          "default": 0,
+          "info": "Select the border radius for the card"
+        },
+        {
+          "type": "select",
+          "id": "card_shadow",
+          "label": "Card Shadow",
+          "options": [
+            {
+              "value": "shadow-none",
+              "label": "None"
+            },
+            {
+              "value": "shadow-sm",
+              "label": "Small"
+            },
+            {
+              "value": "shadow-md",
+              "label": "Medium"
+            },
+            {
+              "value": "shadow-lg",
+              "label": "Large"
+            },
+            {
+              "value": "shadow-xl",
+              "label": "Extra Large"
+            }
+          ],
+          "default": "shadow-lg",
+          "info": "Select the shadow for the card"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits",
+      "settings": {
+        "paddingY": "lg:py-8",
+        "background_color": "#f9f9f9",
+        "text_color": "#333",
+        "title_transform": "uppercase"
+      },
+      "blocks": [
+        {
+          "type": "card_settings",
+          "settings": {
+            "title": "Efficace",
+            "description": "Strictement evalue, teste, et approuve par nos clients",
+            "background_color": "#f9f9f9",
+            "title_color": "#333",
+            "description_color": "#333",
+            "title_transform": "uppercase",
+            "border_radius_card": 0
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

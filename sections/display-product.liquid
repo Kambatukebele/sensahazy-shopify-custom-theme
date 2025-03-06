@@ -1,0 +1,247 @@
+<section class="display-product bg-blue-800">
+  <section class="w-full h-28"></section>
+  {% comment %} lg:flex lg:justify-center {% endcomment %}
+  <div class="relative container flex flex-col lg:flex-row lg:justify-center">
+    <!-- image -->
+    <div class="w-full  lg:w-1/2">
+      <div
+        id="productImage"
+        class="sticky top-0 z-10 w-[255px] h-[255px] scroll-smooth mx-auto lg:top-24 lg:w-[416px] lg:h-[416px] xl:w-[544px] xl:h-[544px] 2xl:w-[672px] 2xl:h-[672px]"
+      >
+        {{
+          product.featured_image
+          | image_url: width: '1500'
+          | image_tag: class: 'w-full h-full object-cover object-center'
+        }}
+      </div>
+    </div>
+    <!-- end image -->
+    <!-- Product details w-full -->
+    <div class="flex-1 lg:w-1/2 lg:flex lg:justify-center">
+      <div
+        {% comment %} w-full bg-white py-12 px-4 border border-gray-100 rounded-t-2xl lg:w-96 lg:py-9 lg:px-8 xl:w-[470px] 2xl:w-[565px] {% endcomment %}
+        id="productDetails"
+        class="bg-white py-12 px-4 border border-gray-100 rounded-t-2xl  lg:py-9 lg:px-8 xl:w-[470px] 2xl:w-[565px]"
+      >
+        <div class="flex flex-col items-center gap-2 mb-5">
+          <h1 class="myProductTitle text-2xl font-bold text-center md:text-4xl">Lip Balm</h1>
+          <p class="myProductDescription text-base font-medium lg:text-lg">Economisez 20% en vous abonnat</p>
+          <p class="myProductDescription text-base font-normal">Excellent reviews</p>
+        </div>
+        <div>
+          <!-- To loop kit de base -->
+          <div class="flex flex-col gap-3">
+            {% for item in (1..3) %}
+              <div class="border flex justify-between items-center rounded-lg py-2 px-2">
+                <div class="flex items-center gap-4">
+                  <img
+                    class="rounded-sm w-14 h-14 object-cover object-center aspect-square"
+                    width="1000"
+                    height="1000"
+                    src="{{ 'air.png' | asset_url }}"
+                  >
+                  <div>
+                    <h6 class="headingBlock text-base font-semibold capitalize">Kit de base</h6>
+                    <p class="descriptionBlock text-xs font-light capitalize">Etui + Recharges</p>
+                  </div>
+                </div>
+                <div class="">
+                  <p class="descriptionBlock text-xs font-light capitalize text-end">
+                    A partir de
+                    <span class="font-semibold text-sm"> $8.40 </span>
+                  </p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <!-- End To loop kit de base -->
+          <!-- Etui -->
+          <div class="py-12 ">
+            <div class="flex flex-col items-center gap-3 mb-5">
+              <h1 class="headingSecond text-2xl font-bold text-center md:text-4xl">Etui</h1>
+              <p class="descriptionSecond text-base font-medium text-center md:text-lg">
+                Choisissez votre étuis en aluminium rechargeable et respectueux de l'environnement
+              </p>
+            </div>
+            <div class="w-full flex flex-wrap justify-center gap-3.5 items-center sm:justify-start">
+              <!-- To loop -->
+              {%- for item in (1..6) -%}
+                <div class="relative shrink-0">
+                  <span class="descriptionSecond px-2 py-1 absolute -top-2 left-3 bg-green-800 block w-fit text-white text-xs rounded-lg"
+                    >Edition limitee</span
+                  >
+                  <div class="w-[120px] h-[120px] rounded-xl">
+                    <img
+                      src="{{ 'air.png' | asset_url }}"
+                      width="1000"
+                      height="1000"
+                      alt="air"
+                      class="object-cover aspect-square object-center rounded-xl block"
+                    >
+                  </div>
+                  <div class="bg-white absolute top-20 left-3 rounded-2xl">
+                    <button class="hidden py-1 px-2 w-[100px] flex justify-center items-center">
+                      <a href="#" class="descriptionSecond text-xs font-semibold text-center">Ajouter</a>
+                    </button>
+                    <div class="py-1 px-2  w-[100px] flex justify-between items-center">
+                      <span class="block text-sm cursor-pointer font-semibold">-</span>
+                      <span class="block text-sm cursor-pointer font-semibold">1</span>
+                      <span class="block text-sm cursor-pointer font-semibold">+</span>
+                    </div>
+                  </div>
+                  <p class="font-light text-sm px-1">Etui coeur rouge</p>
+                </div>
+              {%- endfor -%}
+              <!-- To loop -->
+            </div>
+          </div>
+          <!-- End Etui -->
+          <!-- Recharges -->
+          <div class="py-12 ">
+            <div class="flex flex-col items-center gap-3 mb-5">
+              <h1 class="headingSecond text-2xl font-bold text-center md:text-4xl">Etui</h1>
+              <p class="descriptionSecond text-base font-medium text-center md:text-lg">
+                Choisissez votre étuis en aluminium rechargeable et respectueux de l'environnement
+              </p>
+            </div>
+            <div class="w-full flex flex-wrap justify-center gap-3.5 items-center sm:justify-start">
+              <!-- To loop -->
+              {%- for item in (1..6) -%}
+                <div class="relative shrink-0">
+                  <span class="descriptionSecond px-2 py-1 absolute -top-2 left-3 bg-green-800 block w-fit text-white text-xs rounded-lg"
+                    >Edition limitee</span
+                  >
+                  <div class="w-[120px] h-[120px] rounded-xl">
+                    <img
+                      src="{{ 'air.png' | asset_url }}"
+                      width="1000"
+                      height="1000"
+                      alt="air"
+                      class="object-cover aspect-square object-center rounded-xl block"
+                    >
+                  </div>
+                  <div class="bg-white absolute top-20 left-3 rounded-2xl">
+                    <button class="hidden py-1 px-2 w-[100px] flex justify-center items-center">
+                      <a href="#" class="text-xs font-semibold text-center descriptionSecond">Ajouter</a>
+                    </button>
+                    <div class="py-1 px-2  w-[100px] flex justify-between items-center">
+                      <span class="block text-sm cursor-pointer font-semibold">-</span>
+                      <span class="block text-sm cursor-pointer font-semibold">1</span>
+                      <span class="block text-sm cursor-pointer font-semibold">+</span>
+                    </div>
+                  </div>
+                  <p class="font-light text-sm px-1">Etui coeur rouge</p>
+                </div>
+              {%- endfor -%}
+              <!-- To loop -->
+            </div>
+          </div>
+          <!-- End Recharges -->
+
+          <!-- Ajouter au panier button -->
+          <div class="my-5">
+            <button class="bg-green-800 text-white py-4 px-8 descriptionSecond rounded-lg w-full">
+              $total . Ajouter au panier
+            </button>
+          </div>
+          <!-- End Ajouter au panier button -->
+          <!-- FAQ -->
+          <div>
+            {% for item in (1..3) %}
+              <div>
+                <div class="flex justify-between items-center border-b border-dashed py-4">
+                  <h6 class="headingSecond text-sm font-semibold text-black">Order & Delivery Details</h6>
+                  <img width="20" height="20" loading="lazy" src="{{ 'icon-arrow.svg' | asset_url }}">
+                </div>
+                {% comment %} <div class="descriptionSecond">content</div> {% endcomment %}
+              </div>
+            {% endfor %}
+          </div>
+          <!-- FAQ -->
+        </div>
+      </div>
+    </div>
+    <!-- End Product details -->
+  </div>
+</section>
+
+{% style %}
+{% endstyle %}
+
+{% javascript %}
+{% endjavascript %}
+
+{% style %}
+  .myProductTitle, .headingBlock, .headingSecond{
+    font-family: {{ settings.type_header_font.family }};
+    font-weight: {{ settings.type_header_font.weight }};
+    color: {{ section.settings.product_title_color }};
+  }
+  .myProductDescription, .descriptionBlock, .descriptionSecond{
+    font-family: {{ settings.type_body_font.family }};
+    font-weight: {{ settings.type_body_font.weight }};
+    color: {{ section.settings.product_description_color }}
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Display Product",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#f4f4f4",
+      "info": "Background color for the product"
+    },
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "default": "#000000",
+      "label": "Product title color",
+      "info": "Choose the product title color"
+    },
+    {
+      "type": "color",
+      "id": "product_description_color",
+      "default": "#000000",
+      "label": "Product description color",
+      "info": "Choose the product description color"
+    },
+    {
+      "type": "select",
+      "id": "product_title_text_transform",
+      "label": "Product title color",
+      "options": [
+        {
+          "label": "Uppercase",
+          "value": "uppercase"
+        },
+        {
+          "label": "Capitalize",
+          "value": "capitalize"
+        },
+        {
+          "label": "Normal",
+          "value": "normal-case"
+        }
+      ],
+      "default": "normal-case",
+      "info": "Choose the product title color"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "presets": [
+    {
+      "name": "Display Product"
+    }
+  ]
+}
+{% endschema %}

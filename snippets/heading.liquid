@@ -1,0 +1,14 @@
+{% comment %}
+  Accept class, and content
+{% endcomment %}
+
+<h1 class="{{ class }} headingOnSnippet">
+  {{ content }}
+</h1>
+
+{% style %}
+  .headingOnSnippet {
+    font-family: {{ settings.type_header_font.family }};
+    font-weight: {{ settings.type_header_font.weight }};
+  }
+{% endstyle %}

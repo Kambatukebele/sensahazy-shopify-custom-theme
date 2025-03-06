@@ -1,0 +1,254 @@
+<section class="imgTextBackground w-full h-fit py-8 {{ section.settings.paddingY }}">
+  <div class="px-4 lg:px-0">
+    <div class="flex flex-col md:flex-row  md:justify-between items-center gap-8 rounded-xl lg:w-[900px] xl:w-[1136px] lg:mx-auto">
+      <!-- Product Image -->
+      {% if section.settings.image != blank %}
+        <div class="w-full md:w-1/2">
+          {{
+            section.settings.image
+            | image_url: width: 5000
+            | image_tag:
+              class: 'w-full h-full rounded-lg  object-cover hover:scale-105 transition-transform duration-300'
+          }}
+        </div>
+      {% endif %}
+
+      <!-- Product Info -->
+      <div class="w-full flex flex-col justify-center items-center gap-4 md:w-1/2 text-center md:text-left md:items-start">
+        <h2 class="titleimgText text-3xl {{ section.settings.title_transform }} lg:text-4xl lg:w-96">
+          {{ section.settings.title }}
+        </h2>
+        <p class="descriptionimgText {{ section.settings.description_transform }} text-base mt-2 lg:text-lg">
+          {{ section.settings.description }}
+        </p>
+        <button class="buttonimgText px-8 py-4 cursor-pointer {{ section.settings.button_transform }}">
+          <a href="{{ product.url }}">
+            {{ section.settings.button }}
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% style %}
+  .imgTextBackground{
+    background-color: {{ section.settings.background_color }};
+    padding: {{ section.settings.padding }}px 0px;
+  }
+    .titleimgText{
+      color: {{ section.settings.text_color }};
+      font-family: {{ settings.type_header_font.family }};
+      font-weight: {{ settings.type_header_font.weight }};
+    }
+    .descriptionimgText{
+      color: {{ section.settings.description_color }};
+      font-family: {{ settings.type_body_font.family }};
+      font-weight: {{ settings.type_body_font.weight }};
+    }
+    .buttonimgText{
+      background-color: {{ section.settings.button_color }};
+      transition: all 0.3s;
+    }
+    .buttonimgText a{
+      color: {{ section.settings.button_text_color }};
+      font-family: {{ settings.type_body_font.family }};
+      font-weight: {{ settings.type_body_font.weight }};
+    }
+    .buttonimgText:hover{
+      background-color: {{ section.settings.button_hover_color }};
+    }
+    .buttonimgText a:hover{
+      color: {{ section.settings.button_hover_text_color }};
+    }
+    .buttonimgText{
+      border-radius: {{ section.settings.border_radius }}px;
+    }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Image and text",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image and text"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Select a image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Your freshest breath ever in a imgText shot"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "The ultimate solution on-the-go, recommended by dental hygienists, combines 2 of the most effective treatments for bad breath to give you the freshest month ever, in a ready-to-use pocket size."
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Button",
+      "default": "Shop Now"
+    },
+    {
+      "type": "header",
+      "content": "Styles"
+    },
+    {
+      "type": "select",
+      "id": "paddingY",
+      "label": "Padding Top & Bottom for the section",
+      "options": [
+        {
+          "value": "lg:py-4",
+          "label": "16"
+        },
+        {
+          "value": "lg:py-8",
+          "label": "32"
+        },
+        {
+          "value": "lg:py-12",
+          "label": "48"
+        },
+        {
+          "value": "lg:py-16",
+          "label": "64"
+        },
+        {
+          "value": "lg:py-20",
+          "label": "80"
+        }
+      ],
+      "default": "lg:py-8",
+      "info": "Select the padding for the section"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333"
+    },
+    {
+      "type": "select",
+      "id": "title_transform",
+      "label": "Title Transform",
+      "options": [
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        }
+      ],
+      "default": "uppercase",
+      "info": "Select the text transform for the title"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#333"
+    },
+    {
+      "type": "select",
+      "id": "description_transform",
+      "label": "Description Transform",
+      "options": [
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        }
+      ],
+      "default": "capitalize",
+      "info": "Select the text transform for the description"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#333"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button Hover Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#fff"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "button_transform",
+      "label": "Button Transform",
+      "options": [
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        }
+      ],
+      "default": "uppercase",
+      "info": "Select the text transform for the button"
+    }
+  ],
+  "presets": [
+    {
+      "name": "imgText Product Display"
+    }
+  ]
+}
+{% endschema %}

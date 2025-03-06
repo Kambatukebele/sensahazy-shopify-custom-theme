@@ -1,0 +1,221 @@
+<section class="display-product bg-blue-800">
+  <!-- Spacer at top -->
+  <section class="w-full h-28"></section>
+  <div class="relative container flex flex-col lg:flex-row lg:justify-center">
+    <!-- Product image -->
+    <div class="w-full lg:w-1/2">
+      <div
+        id="productImage"
+        class="sticky top-0 z-10 w-[255px] h-[255px] scroll-smooth mx-auto lg:top-24 lg:w-[416px] lg:h-[416px] xl:w-[544px] xl:h-[544px] 2xl:w-[672px] 2xl:h-[672px]"
+      >
+        {{
+          product.featured_image
+          | image_url: width: '1500'
+          | image_tag: class: 'w-full h-full object-cover object-center'
+        }}
+      </div>
+    </div>
+    <!-- End image -->
+
+    <!-- Product details -->
+    <div class="flex-1 lg:w-1/2 lg:flex lg:justify-center">
+      <div
+        id="productDetails"
+        class="bg-white py-12 px-4 border border-gray-100 rounded-t-2xl lg:py-9 lg:px-8 xl:w-[470px] 2xl:w-[565px]"
+      >
+        <!-- Product title and description -->
+        <div class="flex flex-col items-center gap-2 mb-5">
+          <h1 class="myProductTitle text-2xl font-bold text-center md:text-4xl">{{ product.title }}</h1>
+          <p class="myProductDescription text-base font-medium lg:text-lg">
+            {{ product.description | strip_html | truncatewords: 30 }}
+          </p>
+          <!-- You can add a reviews or additional info element here -->
+          <p class="myProductDescription text-base font-normal">Excellent reviews</p>
+        </div>
+
+        <!-- Product form with variant selectors -->
+        <form id="product_form_{{ product.id }}" method="post" action="/cart/add">
+          {% comment %} {% csrf_token %} {% endcomment %}
+          <!-- Loop through each option (e.g. Type, Case Color, Refill Flavor) -->
+          {% for option in product.options_with_values %}
+            <div class="mb-4">
+              <label for="SingleOptionSelector-{{ forloop.index0 }}" class="block text-sm font-medium text-gray-700">
+                {{ option.name }}
+              </label>
+              <select
+                id="SingleOptionSelector-{{ forloop.index0 }}"
+                name="options[{{ option.name }}]"
+                class="single-option-selector mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+              >
+                {% for value in option.values %}
+                  <option value="{{ value }}">{{ value }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endfor %}
+
+          <!-- Hidden field holding the variant ID -->
+          <input
+            type="hidden"
+            name="id"
+            value="{{ product.selected_or_first_available_variant.id }}"
+            id="ProductSelect-product-template"
+          >
+
+          <!--
+            (Optional) You could include your custom kit/etui/recharge blocks here if they are part of the product
+          -->
+
+          <!-- Add-to-Cart button -->
+          <div class="my-5">
+            <button
+              type="submit"
+              id="add-to-cart"
+              class="bg-green-800 text-white py-4 px-8 descriptionSecond rounded-lg w-full"
+            >
+              {{ product.selected_or_first_available_variant.price | money }} . Ajouter au panier
+            </button>
+          </div>
+        </form>
+
+        <!-- FAQ Section -->
+        <div>
+          {% for item in (1..3) %}
+            <div>
+              <div class="flex justify-between items-center border-b border-dashed py-4">
+                <h6 class="headingSecond text-sm font-semibold text-black">Order &amp; Delivery Details</h6>
+                <img width="20" height="20" loading="lazy" src="{{ 'icon-arrow.svg' | asset_url }}">
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!-- End Product details -->
+  </div>
+</section>
+
+<!-- Product JSON for JavaScript access -->
+<script type="application/json" id="ProductJson-{{ product.id }}">
+  {{ product | json }}
+</script>
+
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', function () {
+    // Parse the product JSON data
+    const productJson = JSON.parse(document.getElementById('ProductJson-{{ product.id }}').textContent);
+    const form = document.getElementById('product_form_{{ product.id }}');
+    const variantSelectors = form.querySelectorAll('.single-option-selector');
+    const hiddenVariantInput = document.getElementById('ProductSelect-product-template');
+    const addToCartButton = document.getElementById('add-to-cart');
+
+    // Find the matching variant based on selected options
+    function findVariant() {
+      const selectedOptions = Array.from(variantSelectors).map((select) => select.value);
+      return productJson.variants.find((variant) => {
+        // Check that each option matches the selected value
+        return variant.options.every((option, index) => option === selectedOptions[index]);
+      });
+    }
+
+    // Update the hidden input and button based on the selected variant
+    function updateVariant() {
+      const variant = findVariant();
+      if (variant) {
+        hiddenVariantInput.value = variant.id;
+        // Use Shopify.formatMoney if available – adjust money format as needed.
+        addToCartButton.innerHTML =
+          Shopify.formatMoney(variant.price, '{{ shop.money_format }}') + ' . Ajouter au panier';
+        if (!variant.available) {
+          addToCartButton.disabled = true;
+          addToCartButton.innerHTML = 'Sold Out';
+        } else {
+          addToCartButton.disabled = false;
+        }
+      }
+    }
+
+    // Listen for changes on each variant selector
+    variantSelectors.forEach((selector) => {
+      selector.addEventListener('change', updateVariant);
+    });
+
+    // Initialize the button text on page load
+    updateVariant();
+  });
+{% endjavascript %}
+
+{% style %}
+  .myProductTitle, .headingBlock, .headingSecond{
+    font-family: {{ settings.type_header_font.family }};
+    font-weight: {{ settings.type_header_font.weight }};
+    color: {{ section.settings.product_title_color }};
+  }
+  .myProductDescription, .descriptionBlock, .descriptionSecond{
+    font-family: {{ settings.type_body_font.family }};
+    font-weight: {{ settings.type_body_font.weight }};
+    color: {{ section.settings.product_description_color }}
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Display Product 2",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#f4f4f4",
+      "info": "Background color for the product"
+    },
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "default": "#000000",
+      "label": "Product title color",
+      "info": "Choose the product title color"
+    },
+    {
+      "type": "color",
+      "id": "product_description_color",
+      "default": "#000000",
+      "label": "Product description color",
+      "info": "Choose the product description color"
+    },
+    {
+      "type": "select",
+      "id": "product_title_text_transform",
+      "label": "Product title text transform",
+      "options": [
+        {
+          "label": "Uppercase",
+          "value": "uppercase"
+        },
+        {
+          "label": "Capitalize",
+          "value": "capitalize"
+        },
+        {
+          "label": "Normal",
+          "value": "normal-case"
+        }
+      ],
+      "default": "normal-case",
+      "info": "Choose the text transform for the product title"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "presets": [
+    {
+      "name": "Display Product 2"
+    }
+  ]
+}
+{% endschema %}

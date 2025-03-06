@@ -1,0 +1,588 @@
+<header class="relative w-full h-fit">
+  <div
+    class="fixed z-50 h-fit backgroundContainer top-14 left-3 right-3 rounded-lg py-4 px-4 delay-300 ease-in-out"
+    data-bg-color-default="{{ section.settings.bg_color_default }}"
+    data-text-color-default="{{ section.settings.text_color_default }}"
+    data-icon-color-default="{{ section.settings.icon_color_default }}"
+    data-bg-color-scroll="{{ section.settings.bg_color_scroll }}"
+    data-text-color-scroll="{{ section.settings.text_color_scroll }}"
+    data-icon-color-scroll="{{ section.settings.icon_color_scroll }}"
+  >
+    <div class="flex justify-between items-center">
+      <!-- Icons hamburger and close -->
+      <div class="flex justify-center items-center">
+        <span class="icon-hamburger pl-1 block cursor-pointer">
+          {{- 'icon-hamburger.svg' | inline_asset_content -}}
+        </span>
+        <span class="icon-close hidden cursor-pointer">
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </span>
+      </div>
+      <!-- End Icons hamburger and close -->
+      <!-- Logo -->
+      <a href="{{ shop.url }}" class="">
+        {%- if section.settings.logo != blank -%}
+          {{ section.settings.logo | image_url: width: 1000 | image_tag: class: '' }}
+        {%- else -%}
+          <span style="color:{{ section.settings.text_color_scroll }}" class="uppercase text-xl font-bold">
+            {{- shop.name -}}
+          </span>
+        {%- endif -%}
+      </a>
+      <!-- End Logo -->
+      <!-- Icons account and cart -->
+      <div class="flex justify-end">
+        <span class="icon-cart block ml-2">
+          {{- 'icon-cart.svg' | inline_asset_content -}}
+        </span>
+      </div>
+      <!-- End Icons account and cart -->
+    </div>
+    <!-- Navigation -->
+    <div class="w-full navigation h-0 overflow-hidden duration-300 ease-in-out">
+      <span class="text-xs uppercase font-semibold">Shop</span>
+      <ul class="flex flex-col justify-center items-start gap-2">
+        {%- for menu in section.settings.menu.links -%}
+          <li class="navigationLink {{ section.settings.text_menu_size }} {{ section.settings.text_menu_transform }} font-semibold">
+            <a href="{{ menu.url }}">{{ menu.title }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+    <!-- End Navigation -->
+  </div>
+  <!-- Background image -->
+  {% if template == 'index' %}
+    <div class="w-full flex min-h-[calc(100svh-34px)] flex-col overflow-clip md:h-[calc(100vh/1.4)] md:min-h-[720px] md:flex-row-reverse lg:min-h-[800px]">
+      <!-- Image -->
+      <div class="aspect-square grow md:w-3/5">
+        {% if section.settings.bg_image %}
+          {{
+            section.settings.bg_image
+            | image_url: width: 1150, height: 1117
+            | image_tag: class: 'full h-full object-center object-cover'
+          }}
+        {% endif %}
+      </div>
+      <!-- Text -->
+      <div
+        style="background-color: {{ section.settings.bg_color }}"
+        class="space-y-4 flex flex-col justify-center items-start gap-3 px-8 py-10 text-default md:w-2/5 md:content-center md:space-y-6 md:px-10 md:py-6 lg:px-20 lg:py-12"
+      >
+        <h1 class="headingText {{ section.settings.heading_text_transform }} {{ section.settings.heading_text_size_phone }} {{ section.settings.heading_text_size_tablet }} {{ section.settings.heading_text_size_desktop }}">
+          {{ section.settings.heading_text }}
+        </h1>
+        <p class="headerParagraph text-base sm:text-lg">
+          {{ section.settings.paragraph_text }}
+        </p>
+        <div class="flex flex-row flex-wrap items-center gap-4">
+          <button
+            class="relative py-4 px-8 buttonHeader"
+          >
+            <a
+              class="{{ section.settings.button_text_transform }} buttonHeaderLink"
+              href="{{ section.settings.button_link }}"
+            >
+              {{ section.settings.button_text }}
+            </a>
+          </button>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  <!-- End Background image -->
+</header>
+
+{% style %}
+  .headingText{
+      font-family: "Montserrat Black Bold";
+      font-weight: 900;
+      color: {{ section.settings.heading_text_color }};
+  }
+  .headerParagraph{
+      font-family: {{ settings.type_body_font.family }};
+      font-weight: {{ settings.type_body_font.weight }};
+      color: {{ section.settings.paragraph_text_color }};
+  }
+  .buttonHeader{
+      font-family: {{ settings.type_body_font.family }};
+      font-weight: {{ settings.type_body_font.weight }};
+      background-color: {{ section.settings.button_bg_color }};
+      border-radius: {{ section.settings.button_border_radius }}px
+  }
+  .buttonHeaderLink{
+      font-family: {{ settings.type_body_font.family }};
+      font-weight: {{ settings.type_body_font.weight }};
+      color: {{ section.settings.button_text_color }};
+
+    }
+    .navigationLink{
+      font-weight: {{ settings.type_body_font.weight }};
+      font-family: {{ settings.type_body_font.family }};
+    }
+    /* Smooth background transition */
+    .backgroundContainer {
+      transition: background-color 0.4s ease-in-out, transform 0.4s ease-in-out;
+      transform: translateY(-10px);
+    }
+
+    .backgroundContainer.show {
+      transform: translateY(0);
+    }
+{% endstyle %}
+
+{% javascript %}
+  const iconHamburger = document.querySelector('.icon-hamburger');
+  const iconClose = document.querySelector('.icon-close');
+  const backgroundContainer = document.querySelector('.backgroundContainer');
+  const navigation = document.querySelector('.navigation');
+  const icons = document.querySelectorAll('.icon-hamburger, .icon-close, .icon-account, .icon-cart');
+  const textElements = document.querySelectorAll('.navigation a, .navigation span');
+
+  const heroSection = document.querySelector('header .w-full.h-full.lg\\:h-screen');
+
+  // Get default and scroll colors from Liquid data attributes
+  const bgColorDefault = backgroundContainer.dataset.bgColorDefault || 'transparent';
+  const textColorDefault = backgroundContainer.dataset.textColorDefault || '#ffffff';
+  const iconColorDefault = backgroundContainer.dataset.iconColorDefault || '#ffffff';
+
+  const bgColorScroll = backgroundContainer.dataset.bgColorScroll || '#000000';
+  const textColorScroll = backgroundContainer.dataset.textColorScroll || '#ffffff';
+  const iconColorScroll = backgroundContainer.dataset.iconColorScroll || '#ffffff';
+
+  let menuOpen = false; // Track menu state
+
+  // Apply default styles on load
+  function applyDefaultStyles() {
+    if (window.innerWidth < 1024) {
+      // If screen width is less than 1024px (mobile), always apply scroll colors
+      backgroundContainer.style.backgroundColor = bgColorScroll;
+      textElements.forEach((el) => (el.style.color = textColorScroll));
+      icons.forEach((icon) => (icon.style.color = iconColorScroll));
+    } else {
+      // For larger screens, apply the default colors
+      backgroundContainer.style.backgroundColor = bgColorDefault;
+      textElements.forEach((el) => (el.style.color = textColorDefault));
+      icons.forEach((icon) => (icon.style.color = iconColorDefault));
+    }
+  }
+
+  function applyScrollStyles() {
+    backgroundContainer.style.backgroundColor = bgColorScroll;
+    textElements.forEach((el) => (el.style.color = textColorScroll));
+    icons.forEach((icon) => (icon.style.color = iconColorScroll));
+  }
+
+  applyDefaultStyles(); // Set initial styles
+
+  // Function to update colors on scroll
+  function updateColorsOnScroll() {
+    if (window.innerWidth < 1024) return; // Ignore scroll color changes on small screens
+
+    let theScroll = window.scrollY;
+    let heroHeight = heroSection.offsetHeight;
+
+    if (menuOpen) {
+      applyScrollStyles();
+    } else {
+      if (theScroll > heroHeight) {
+        applyScrollStyles();
+      } else {
+        applyDefaultStyles();
+      }
+    }
+  }
+
+  // Scroll event listener
+  window.addEventListener('scroll', updateColorsOnScroll);
+
+  // Open menu event
+  iconHamburger.addEventListener('click', () => {
+    menuOpen = true;
+    navigation.classList.remove('h-0', 'overflow-hidden');
+    navigation.classList.add('h-[200px]', 'overflow-visible');
+    iconHamburger.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+
+    applyScrollStyles(); // Apply scroll colors when menu opens
+  });
+
+  // Close menu event
+  iconClose.addEventListener('click', () => {
+    menuOpen = false;
+    navigation.classList.add('h-0', 'overflow-hidden');
+    navigation.classList.remove('h-[200px]', 'overflow-visible');
+    iconHamburger.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+
+    // Restore colors based on scroll position
+    updateColorsOnScroll();
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "header",
+      "content": "Background Color header",
+      "info": "Set the background color for the header"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Background Image header",
+      "info": "Add the image for the background header"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image on large devices"
+    },
+    {
+      "type": "header",
+      "content": "Header texts transform"
+    },
+    {
+      "type": "select",
+      "id": "heading_text_transform",
+      "label": "Heading Text Transform",
+      "options": [
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        }
+      ],
+      "default": "uppercase",
+      "info": "Set the text transform for the heading text"
+    },
+    {
+      "type": "select",
+      "id": "button_text_transform",
+      "label": "Button Text Transform",
+      "options": [
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        }
+      ],
+      "default": "capitalize",
+      "info": "Set the text transform for the paragraph text"
+    },
+
+    {
+      "type": "header",
+      "content": "Header texts"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "Flavor from thin air",
+      "info": "Set the heading text for the header"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "paragraph_text",
+      "label": "Paragraph Text",
+      "default": "Meet the first hydration system that flavors water through scent alone.",
+      "info": "Set the paragraph text for the header"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Grab a bottle",
+      "info": "Set the button text for the header"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "info": "Set the button link for the header"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#ff3366"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button Border Radius",
+      "default": 4,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "info": "Set the border radius for the button"
+    },
+    {
+      "type": "header",
+      "content": "Headers text colors"
+    },
+    {
+      "type": "color",
+      "id": "heading_text_color",
+      "label": "Heading Text Color",
+      "default": "#ffffff",
+      "info": "Set the heading text color for the header"
+    },
+    {
+      "type": "color",
+      "id": "paragraph_text_color",
+      "label": "Paragraph Text Color",
+      "default": "#ffffff",
+      "info": "Set the paragraph text color for the header"
+    },
+    {
+      "type": "header",
+      "content": "Headers text sizes (Phone)"
+    },
+    {
+      "type": "select",
+      "id": "heading_text_size_phone",
+      "label": "Heading Text Size",
+      "options": [
+        {
+          "value": "text-2xl",
+          "label": "24px"
+        },
+        {
+          "value": "text-3xl",
+          "label": "32px"
+        },
+        {
+          "value": "text-4xl",
+          "label": "40px"
+        },
+        {
+          "value": "text-5xl",
+          "label": "48px"
+        }
+      ],
+      "default": "text-4xl",
+      "info": "Set the heading text size for the header on phone"
+    },
+    {
+      "type": "header",
+      "content": "Headers text sizes (Tablet)"
+    },
+    {
+      "type": "select",
+      "id": "heading_text_size_tablet",
+      "label": "Heading Text Size",
+      "options": [
+        {
+          "value": "md:text-3xl",
+          "label": "32px"
+        },
+        {
+          "value": "md:text-4xl",
+          "label": "40px"
+        },
+        {
+          "value": "md:text-5xl",
+          "label": "48px"
+        },
+        {
+          "value": "md:text-6xl",
+          "label": "56px"
+        }
+      ],
+      "default": "md:text-5xl",
+      "info": "Set the heading text size for the header on tablet"
+    },
+    {
+      "type": "header",
+      "content": "Headers text sizes (Desktop)"
+    },
+    {
+      "type": "select",
+      "id": "heading_text_size_desktop",
+      "label": "Heading Text Size",
+      "options": [
+        {
+          "value": "lg:text-4xl",
+          "label": "40px"
+        },
+        {
+          "value": "lg:text-5xl",
+          "label": "48px"
+        },
+        {
+          "value": "lg:text-6xl",
+          "label": "56px"
+        },
+        {
+          "value": "lg:text-7xl",
+          "label": "64px"
+        },
+        {
+          "value": "lg:text-8xl",
+          "label": "72px"
+        }
+      ],
+      "default": "lg:text-8xl",
+      "info": "Set the heading text size for the header on desktop"
+    },
+    {
+      "type": "header",
+      "content": "Navigation Colors (When Page Loads)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_default",
+      "label": "Background Color (Default)",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "text_color_default",
+      "label": "Text Color (Default)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color_default",
+      "label": "Icon Color (Default)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Navigation Colors (On Scroll)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_scroll",
+      "label": "Background Color (Scroll)",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color_scroll",
+      "label": "Text Color (Scroll)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color_scroll",
+      "label": "Icon Color (Scroll)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    },
+    {
+      "type": "header",
+      "content": "Navigation Text size"
+    },
+    {
+      "type": "select",
+      "id": "text_menu_size",
+      "label": "Text Menu Size",
+      "options": [
+        {
+          "value": "text-base",
+          "label": "16px"
+        },
+        {
+          "value": "text-lg",
+          "label": "20px"
+        },
+        {
+          "value": "text-xl",
+          "label": "24px"
+        },
+        {
+          "value": "text-2xl",
+          "label": "32px"
+        },
+        {
+          "value": "text-3xl",
+          "label": "40px"
+        }
+      ],
+      "default": "text-3xl",
+      "info": "Set the text size for the navigation menu"
+    },
+    {
+      "type": "select",
+      "id": "text_menu_transform",
+      "label": "Text Menu Transform",
+      "options": [
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        }
+      ],
+      "default": "uppercase",
+      "info": "Set the text transform for the navigation menu"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header",
+      "settings": {
+        "bg_color_default": "transparent",
+        "text_color_default": "#ffffff",
+        "icon_color_default": "#ffffff",
+        "bg_color_scroll": "#000000",
+        "text_color_scroll": "#ffffff",
+        "icon_color_scroll": "#ffffff",
+        "text_menu_size": "text-3xl",
+        "text_menu_transform": "uppercase"
+      }
+    }
+  ]
+}
+{% endschema %}

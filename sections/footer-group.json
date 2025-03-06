@@ -1,0 +1,57 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "link_list_XKYTrP": {
+          "type": "link_list",
+          "settings": {
+            "menu": "footer",
+            "color_text_menu_heading": "#ffffff",
+            "color_text_menu_link": "#d7d7d7",
+            "color_text_menu_link_hover": "#ffd300"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_XKYTrP"
+      ],
+      "settings": {
+        "color_bg_footer": "#023375",
+        "footer_paddingY": "lg:py-20",
+        "certification_image": "shopify://shop_images/Certified-B-Corporation-logo.png",
+        "newsletter_enable": true,
+        "newsletter_heading": "Restez au courant des nouvelles sensaHazy 🗞️, des derniers produits 💐 et des produits les plus frais scents👃🏾",
+        "newsletter_text_color": "#e6e6e6",
+        "newsletter_input_bg_color": "#e4e4e4",
+        "newsletter_button_bg_color": "#ffd300",
+        "newsletter_button_text_color": "#121212",
+        "newsletter_button_radius": 8,
+        "social_icon_color": "#e6e6e6",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

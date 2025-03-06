@@ -1,0 +1,226 @@
+<section class="w-full h-fit py-8 {{ section.settings.video_paddingY }}">
+  <div class="lg:w-[900px] xl:w-[1136px] lg:mx-auto">
+    <div class="mb-10">
+      {% render 'heading',
+        content: 'Achetez une fois, rechargez à vie',
+        class: 'px-4 text-3xl sm:text-5xl w-72 mx-auto text-gray-950 text-center sm:w-[490px] md:text-7xl md:w-[690px]'
+      %}
+    </div>
+    <div class="w-full rounded-xl lg:relative lg:flex lg:min-h-screen">
+      <div class="w-full lg:w-[700px] xl:w-[900px]">
+        <div class="lg:sticky lg:top-0 z-10">
+          <div class="w-[90%] mx-auto rounded-xl mb-5 lg:w-full lg:flex lg:justify-start lg:h-[600px] lg:mb-0">
+            {{
+              section.settings.video
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: true,
+                class: 'w-full h-full object-cover object-center rounded-xl'
+            }}
+          </div>
+        </div>
+      </div>
+      {% if section.blocks != blank %}
+        <div class="w-full lg:w-[368px] lg:ml-[-100px] lg:mt-44">
+          <div class="relative z-20 h-fit py-8 flex flex-col gap-6 justify-center items-start border border-gray-400 rounded-2xl bg-white w-[90%] mx-auto lg:w-full lg:p-6">
+            {% for block in section.blocks %}
+              {% case block.type %}
+                  123456rgf
+                {% when 'video_card' %}
+                  {% style %}
+                    .videoheading{
+                      font-family: {{ settings.type_header_font.family }};
+                      font-weight: {{ settings.type_header_font.weight }};
+                      color: {{ block.settings.video_heading_title_color }}
+                    }
+                    .videoDescription{
+                      font-family: {{ settings.type_body_font.family }};
+                      font-weight: {{ settings.type_body_font.weight }};
+                      color: {{ block.settings.video_description_color }}
+                    }
+                  {% endstyle %}
+
+                  <div class="flex flex-col justify-center gap-2 items-start px-6">
+                    <h6 class="text-black videoheading text-lg">
+                      {{ block.settings.title }}
+                    </h6>
+                    <p class="videoDescription text-base">
+                      {{ block.settings.description }}
+                    </p>
+                  </div>
+              {% endcase %}
+            {% endfor %}
+            <button
+              style="background-color: {{ section.settings.button_video_bg_color }}; border-radius: {{ section.settings.button_video_radius }}px"
+              class="videoButton px-8 py-4 mx-4"
+            >
+              <a href="#" style="color: {{ section.settings.button_video_text_color }};">
+                {{ section.settings.button_video_text }}
+              </a>
+            </button>
+          </div>
+        </div>
+        {% comment %} lg:w-[368px] lg:p-6 lg:absolute lg:top-44 lg:-right-10 {% endcomment %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.video.name",
+  "tag": "section",
+  "class": "section",
+  "limit": 1,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.video.settings.header__1.content"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "t:sections.video.settings.video.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.video.settings.header__2.content"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.video.settings.paragraph.content"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "accept": ["youtube", "vimeo"],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "label": "t:sections.video.settings.video_url.label",
+      "info": "t:sections.video.settings.video_url.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "t:sections.video.settings.cover_image.label"
+    },
+    {
+      "type": "header",
+      "content": "Video settings"
+    },
+    {
+      "type": "select",
+      "id": "video_paddingY",
+      "label": "Video padding top and bottom",
+      "options": [
+        {
+          "value": "lg:py-4",
+          "label": "16"
+        },
+        {
+          "value": "lg:py-8",
+          "label": "32"
+        },
+        {
+          "value": "lg:py-12",
+          "label": "48"
+        },
+        {
+          "value": "lg:py-16",
+          "label": "64"
+        },
+        {
+          "value": "lg:py-20",
+          "label": "80"
+        }
+      ],
+      "default": "lg:py-20",
+      "info": "Padding top and bottom of the video"
+    },
+    {
+      "type": "header",
+      "content": "Video button settings"
+    },
+    {
+      "type": "text",
+      "id": "button_video_text",
+      "label": "Button text",
+      "default": "Shop now"
+    },
+    {
+      "type": "color",
+      "id": "button_video_bg_color",
+      "label": "Button background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_video_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_video_radius",
+      "label": "Button border radius",
+      "min": 4,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 4,
+      "info": "Border radius for the video"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Video description",
+      "type": "video_card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Video description texts"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Video heading title",
+          "default": "1. This the heading title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Video description"
+        },
+        {
+          "type": "header",
+          "content": "Video texts styles"
+        },
+        {
+          "type": "color",
+          "id": "video_heading_title_color",
+          "label": "Video heading title color",
+          "default": "#000000",
+          "info": "Video Heading title color"
+        },
+        {
+          "type": "color",
+          "id": "video_description_color",
+          "label": "Video description color",
+          "default": "#000000",
+          "info": "Video description description color"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.video.presets.name"
+    }
+  ]
+}
+{% endschema %}

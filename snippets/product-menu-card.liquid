@@ -1,0 +1,24 @@
+{% comment %}
+  Accept src as a variable for the image
+{% endcomment %}
+<div class="productMenuCard">
+  <img class="productMenuCard__image" width="100" src="{{'air.png' | asset_url }}">
+  <div class="productMenuCard__text">
+    ipsum dolor sit amet consectetur adipiscing elit ultricies mollis, cras porta tempor cursus auctor morbi himenaeos
+    facilisi pellentesque libero, per habitant bibendum taciti euismod lobortis a duis. Interdum nunc rutrum tempor co
+  </div>
+</div>
+<style>
+  .productMenuCard {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid gray;
+    padding: 8px 16px;
+  }
+  .productMenuCard__image {
+    display: block;
+    border-radius: 8px;
+  }
+</style>

@@ -1,0 +1,247 @@
+<section class="bundle">
+  <div class="bundle__wrapper">
+    <div class="bundle__upper">
+      <span>Shop offer</span>
+      <div class="bundle__upper--heading">Stay hydrated with these bundles</div>
+    </div>
+    <div class="bundle__bottom">
+      <a class="bundle__bottom--card">
+        <div class="bundle__card-DivImg">
+          <img src="{{ 'air.png' | asset_url }}">
+        </div>
+        {% comment %} <span class="bundle__card--body" style="color: black">New Mini Sipper For Kids</span> {% endcomment %}
+      </a>
+      <a class="bundle__bottom--card">
+        <div class="bundle__card-DivImg">
+          <img src="{{ 'air.png' | asset_url }}">
+        </div>
+        {% comment %} <span class="bundle__card--body" style="color: black">New Mini Sipper For Kids</span> {% endcomment %}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+      .bundle {
+        width: 100%;
+        height: content-fit;
+        padding-top: {{ section.settings.range_padding_top }}px;
+        padding-bottom: {{ section.settings.range_padding_bottom }}px;
+        background-color: {{ section.settings.color_scheme.settings.background }};
+      }
+      .bundle__wrapper {
+        padding: 0 1.5rem;
+      }
+      .bundle__upper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 40px;
+      }
+      .bundle__upper span {
+        font-size: 18px;
+        line-height: 1;
+        color: {{ section.settings.color }};
+        font-family: {{ settings.type_body_font.family }};
+        font-weight: {{ settings.type_body_font.weight }};
+        font-style: {{ settings.type_body_font.style }};
+      }
+      .bundle__upper--heading {
+        font-size: 40px;
+        line-height: 1.1;
+        color: {{ section.settings.color_scheme.settings.text }};
+        font-family: {{ settings.type_header_font.family }};
+        font-weight: {{ settings.type_header_font.weight }};
+        font-style: {{ settings.type_header_font.style }};
+      }
+      .bundle__bottom {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+        gap: 20px; /* Adds spacing between the cards */
+  }
+
+      }
+      .bundle__bottom--card{
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          background: #f8f8f8;
+          padding: 20px;
+          border-radius: 10px;
+          text-decoration: none;
+      }
+      .bundle__card-DivImg{
+          border-radius: {{ settings.card_corner_radius }}px;
+
+      }
+      .bundle__card-DivImg img {
+        width: 100%; /* Makes the image responsive */
+        max-width: 100%; /* Prevents it from exceeding container width */
+        min-width: 100px; /* Ensures it doesn’t shrink too much */
+        height: auto;
+        border-radius: {{ settings.card_corner_radius }}px;
+      }
+
+      .bundle__card--body{
+          font-family: {{ settings.type_header_font.family }};
+          font-size: 24px;
+          font-weight: {{ settings.type_header_font.weight }};
+          font-style: {{ settings.type_header_font.style }};
+          position: absolute;
+
+      }
+
+      @media (min-width: 1024px) {
+        .bundle__card-DivImg img {
+          max-width: 500px; /* Even bigger on desktops */
+        }
+      }
+
+
+      @media (min-width: 1024px){
+        .bundle__wrapper {
+          max-width: 1024px;
+          margin: 0px auto;
+          padding: 0 1.5rem;
+        }
+        .bundle__upper{
+          align-items: center;
+        }
+        .bundle__bottom {
+          flex-direction:row;
+          align-items: center;
+        }
+
+      }
+      @media (min-width: 1280px){
+          .bundle__wrapper {
+              padding: 0 5rem;
+              max-width: {{ section.settings.layout }}px;
+          }
+
+          .bundle__upper--heading {
+            font-size: {{ section.settings.range_size }}px;
+          }
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Bundle",
+  "class": "bundle",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Choose the Width of the section"
+    },
+    {
+      "type": "range",
+      "id": "layout",
+      "label": "Layout",
+      "min": 1000,
+      "max": 1600,
+      "unit": "px",
+      "step": 100,
+      "default": 1200,
+      "info": "Adjust according your design"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Choose the for the caption"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "inline_richtext_caption",
+      "label": "Caption text"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Caption color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Choose the heading size on larger screen"
+    },
+    {
+      "type": "range",
+      "id": "range_size",
+      "label": "Heading size on larger screen",
+      "min": 40,
+      "max": 50,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "inline_richtext_heading",
+      "label": "Heading text"
+    },
+    {
+      "type": "header",
+      "content": "Paddings"
+    },
+    {
+      "type": "range",
+      "id": "range_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "range_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 36,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "bundle block",
+      "type": "bundle_block",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "inline_richtext_one",
+          "label": "Text 1"
+        },
+        {
+          "type": "color",
+          "id": "color_icon",
+          "label": "Color icon",
+          "default": "#000000"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle"
+    }
+  ]
+}
+{% endschema %}

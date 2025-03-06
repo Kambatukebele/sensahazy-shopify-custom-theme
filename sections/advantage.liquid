@@ -1,0 +1,224 @@
+<section class="advantage">
+  <div class="advantage__wrapper">
+    <div class="advantage__upper">
+      <span> {{ section.settings.inline_richtext_caption }} </span>
+      <div class="advantage__upper--heading">{{ section.settings.inline_richtext_heading }}</div>
+    </div>
+    <div class="advantage__bottom">
+      {%- if section.blocks != empty -%}
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'advantage_block' -%}
+              <div class="advantage__bottom--card">
+                <span>{% render 'icon-head', color: block.settings.color_icon %}</span>
+                <span class="advantage__bottom--card-body">
+                  {{ block.settings.inline_richtext_one }}
+                </span>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+    .advantage {
+      width: 100%;
+      height: content-fit;
+      padding-top: {{ section.settings.range_padding_top }}px;
+      padding-bottom: {{ section.settings.range_padding_bottom }}px;
+      background-color: {{ section.settings.color_scheme.settings.background }};
+    }
+    .advantage__wrapper {
+      padding: 0 1.5rem;
+    }
+    .advantage__upper{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .advantage__upper span {
+      font-size: 18px;
+      line-height: 1;
+      color: {{ section.settings.color }};
+      font-family: {{ settings.type_body_font.family }};
+      font-weight: {{ settings.type_body_font.weight }};
+      font-style: {{ settings.type_body_font.style }};
+    }
+    .advantage__upper--heading {
+      font-size: 40px;
+      line-height: 1.1;
+      color: {{ section.settings.color_scheme.settings.text }};
+      font-family: {{ settings.type_header_font.family }};
+      font-weight: {{ settings.type_header_font.weight }};
+      font-style: {{ settings.type_header_font.style }};
+    }
+    .advantage__bottom {
+      display:flex;
+      flex-direction:column;
+      align-items: flex-start;
+      justify-content: center;
+      gap:10px
+    }
+    .advantage__bottom--card {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      align-items: center;
+      flex-shrink: 1;
+    }
+    .advantage__bottom--card-body {
+      display: block;
+      font-size: 20px;
+      font-family: {{ settings.type_body_font.family }};
+      font-weight: {{ settings.type_body_font.weight }};
+      font-style: {{ settings.type_body_font.style }};
+      color: {{ section.settings.color_scheme.settings.text }}
+
+    }
+    @media (min-width: 1024px){
+      .advantage__wrapper {
+        max-width: 1024px;
+        margin: 0px auto;
+        padding: 0 1.5rem;
+      }
+      .advantage__upper{
+        align-items: center;
+      }
+      .advantage__bottom {
+        flex-direction:row;
+        align-items: center;
+      }
+
+    }
+    @media (min-width: 1280px){
+        .advantage__wrapper {
+            padding: 0 5rem;
+            max-width: {{ section.settings.layout }}px;
+        }
+
+        .advantage__upper--heading {
+          font-size: {{ section.settings.range_size }}px;
+        }
+  }
+</style>
+{% schema %}
+{
+  "name": "Advatange",
+  "class": "advantage",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Choose the Width of the section"
+    },
+    {
+      "type": "range",
+      "id": "layout",
+      "label": "Layout",
+      "min": 1000,
+      "max": 1600,
+      "unit": "px",
+      "step": 100,
+      "default": 1200,
+      "info": "Adjust according your design"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Choose the for the caption"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "inline_richtext_caption",
+      "label": "Caption text"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Caption color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Choose the heading size on larger screen"
+    },
+    {
+      "type": "range",
+      "id": "range_size",
+      "label": "Heading size on larger screen",
+      "min": 40,
+      "max": 50,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "inline_richtext_heading",
+      "label": "Heading text"
+    },
+    {
+      "type": "header",
+      "content": "Paddings"
+    },
+    {
+      "type": "range",
+      "id": "range_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "range_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 36,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Advantage block",
+      "type": "advantage_block",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "inline_richtext_one",
+          "label": "Text 1"
+        },
+        {
+          "type": "color",
+          "id": "color_icon",
+          "label": "Color icon",
+          "default": "#000000"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advantage"
+    }
+  ]
+}
+{% endschema %}

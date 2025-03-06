@@ -1,0 +1,213 @@
+<div
+  style="background-color: {{ section.settings.background_color }}"
+  class="w-full py-8 bg-white {{ section.settings.paddingY }}"
+>
+  <h2 class="testimonialHeading px-4 text-3xl lg:text-4xl {{ section.settings.title_transform }} text-center mb-10 w-full sm:w-lg sm:mx-auto lg:w-[680px]">
+    {{ section.settings.title }}
+  </h2>
+  <div class="relative flex items-center justify-center mt-6 group">
+    <button class="prev-btn absolute left-0 p-3 bg-transparent text-2xl cursor-pointer z-10 hidden group-hover:flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 hover:bg-gray-100">
+      &#10094;
+    </button>
+
+    <div class="carousel flex overflow-x-auto scroll-smooth snap-x snap-mandatory w-4/5 space-x-6 no-scrollbar">
+      {% for review in section.blocks %}
+        <div class="testimonial-card flex-shrink-0 w-64 bg-white shadow-lg rounded-xl text-center overflow-hidden snap-center">
+          {{ review.settings.image | image_url: width: 5000 | image_tag: class: 'w-full h-64 object-cover' }}
+          <div class="p-4">
+            <p class="text-yellow-500 text-lg font-bold">★★★★★</p>
+            <p style="color: {{ review.settings.color_text_color }};" class=" mt-3 text-lg testimonialText">
+              {{ review.settings.testimonial_text }}
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <button class="next-btn absolute right-0 p-3 bg-transparent text-2xl cursor-pointer z-10 hidden group-hover:flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 hover:bg-gray-100">
+      &#10095;
+    </button>
+  </div>
+</div>
+{% style %}
+  .testimonialHeading{
+    font-family: {{ settings.type_header_font.family }};
+    font-weight: {{ settings.type_header_font.weight }};
+    color: {{ section.settings.color_title }};
+  }
+  .testimonialText{
+    font-family: {{ settings.type_body_font.family }};
+    font-weight: {{ settings.type_body_font.weight }};
+  }
+  .testimonial-card{
+    transition: transform 0.5s;
+  }
+  .testimonial-card:hover{
+    transform: scale(1.05);
+  }
+  .carousel{
+    scroll-snap-type: x mandatory;
+  }
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+{% endstyle %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const carousel = document.querySelector('.carousel');
+    const nextBtn = document.querySelector('.next-btn');
+    const prevBtn = document.querySelector('.prev-btn');
+
+    nextBtn.addEventListener('click', function () {
+      carousel.scrollBy({ left: 340, behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', function () {
+      carousel.scrollBy({ left: -340, behavior: 'smooth' });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Testimonial Carousel",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Testimonial Carousel"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "select",
+      "id": "title_transform",
+      "label": "Title Transform",
+      "options": [
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "Styles"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Title Color",
+      "default": "#333"
+    },
+    {
+      "type": "select",
+      "id": "paddingY",
+      "label": "Padding top and bottom",
+      "options": [
+        {
+          "value": "lg:py-4",
+          "label": "16"
+        },
+        {
+          "value": "lg:py-8",
+          "label": "32"
+        },
+        {
+          "value": "lg:py-12",
+          "label": "48"
+        },
+        {
+          "value": "lg:py-16",
+          "label": "64"
+        },
+        {
+          "value": "lg:py-20",
+          "label": "80"
+        }
+      ],
+      "default": "lg:py-8",
+      "info": "Select the padding for the section"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Testimonial"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Customer Image",
+          "info": "Recommended size: 500x500 pixels"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "testimonial_text",
+          "label": "Testimonial Text",
+          "default": "This is a testimonial, replace it with your own text.",
+          "info": "Add the testimonial text here"
+        },
+        {
+          "type": "color",
+          "id": "color_text_color",
+          "label": "Testimonial Text Color",
+          "default": "#333"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial Carousel",
+      "settings": {
+        "title": "What Our Customers Say",
+        "title_transform": "uppercase",
+        "background_color": "#f9f9f9",
+        "color_title": "#333",
+        "paddingY": "lg:py-8"
+      },
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "image": "",
+            "testimonial_text": "This is a testimonial, replace it with your own text.",
+            "color_text_color": "#333"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

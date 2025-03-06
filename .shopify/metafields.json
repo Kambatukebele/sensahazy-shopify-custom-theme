@@ -1,0 +1,26 @@
+{
+  "article": [],
+  "blog": [],
+  "brand": [],
+  "collection": [],
+  "company": [],
+  "company_location": [],
+  "location": [],
+  "market": [],
+  "order": [],
+  "page": [],
+  "product": [
+    {
+      "key": "background_image_product",
+      "namespace": "custom",
+      "name": "Background image product",
+      "description": "This image will be the background of the image top display on the section product",
+      "type": {
+        "name": "file_reference",
+        "category": "REFERENCE"
+      }
+    }
+  ],
+  "variant": [],
+  "shop": []
+}

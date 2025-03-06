@@ -1,0 +1,113 @@
+<section
+  style="color: {{ section.settings.color }}; background-color: {{ section.settings.bg_color }}"
+  class="w-full h-fit"
+>
+  <div class="announcement_box text-center container px-2">
+    {{ section.settings.text }}
+  </div>
+</section>
+
+{% style %}
+    .announcement_box{
+      padding-top: {{ section.settings.paddingY }}px;
+      padding-bottom: {{ section.settings.paddingY }}px;
+    }
+    .announcement_box p {
+    font-size: {{ section.settings.size }}px;
+    font-family: {{ settings.type_body_font.family }};
+    font-weight: {{ settings.type_body_font.weight }};
+    text-transform: {{ section.settings.text_transform }};
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "t:sections.announcement-bar.name",
+  "limit": 2,
+  "class": "announcement-bar-section",
+  "disabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement bar"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Welcome</p>"
+    },
+    {
+      "type": "range",
+      "id": "size",
+      "label": "Announcement font size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text transform",
+      "options": [
+        {
+          "label": "Normal",
+          "value": "normal"
+        },
+        {
+          "label": "Uppercase",
+          "value": "uppercase"
+        },
+        {
+          "label": "Capitalize",
+          "value": "capitalize"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "paddingY",
+      "label": "Announcement Padding top and bottom",
+      "min": 5,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Annoucement bar colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.announcement-bar.presets.name",
+      "settings": {
+        "text": "<p>Welcome</p>",
+        "bg_color": "#000000",
+        "color": "#ffffff",
+        "size": 11,
+        "text_transform": "normal",
+        "paddingY": 6
+      }
+    }
+  ]
+}
+{% endschema %}
